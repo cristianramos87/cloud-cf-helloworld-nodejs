@@ -1,0 +1,33 @@
+#Steps Specific Configuration
+changeDocumentId: '001,'
+general:
+steps:
+  mtaBuild:
+    buildTarget: 'CF'
+    mtarName: '/var/jenkins_home/repositories/helloworld.mtar'
+    platform: 'CF'
+  transportRequestCreate:
+      verbose: 'true'
+      description: 'Orden de prueba Jenkins'
+      developmentSystemId: 'DEV_SCP~EXT_SRV'
+      changeManagement:
+        changeDocumentLabel: 'ChangeDocument\s?:'
+        endpoint: 'http://vhcala4hsmci.dummy.nodomain:50000/sap/opu/odata/sap/AI_CRM_GW_CM_CI_SRV'
+        credentialsId: 'e7e59f9c-8a85-4b27-8337-b0f9c04dadfa'
+        type: 'SOLMAN'
+        git:
+          from: 'HEAD~1'
+          to: 'HEAD'
+          format: '%b'
+  transportRequestUploadFile:
+      abapPackage: 'ZSM'
+      applicationDescription: 'PruebaJenkins-HelloWorld' 
+      applicationId: 'HCP'
+      applicationName: 'HelloWorld'
+      changeManagement:
+        changeDocumentLabel: 'ChangeDocument\s?:'
+        endpoint: 'http://vhcala4hsmci.dummy.nodomain:50000/sap/opu/odata/sap/AI_CRM_GW_CM_CI_SRV'
+        credentialsId: 'e7e59f9c-8a85-4b27-8337-b0f9c04dadfa'
+        type: 'SOLMAN'
+      filePath: '/var/jenkins_home/repositories/helloworld.mtar'
+
